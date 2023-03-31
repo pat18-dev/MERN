@@ -19,3 +19,23 @@ const createServer = async (config) => {
 };
 
 module.exports = createServer;
+
+
+// const routes = [
+//     {
+//       method: 'GET',
+//       path: '/',
+//       handler: (req, res) => res.send('Hello, world!'),
+//     },
+//     {
+//       method: 'POST',
+//       path: '/api/users',
+//       handler: (req, res) => {
+//         // Handle POST request to create a new user
+//       },
+//     },
+//     // Add more routes here
+//   ];
+  
+//   // Register the routes using the middleware function
+//   app.use(registerRoutes(routes));
