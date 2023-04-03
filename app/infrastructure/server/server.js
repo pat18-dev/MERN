@@ -8,7 +8,7 @@ const createServer = async (config) => {
     server.listen(config.port)
 
     // Register custom plugins
-    await server.register([
+    await server.registerRoutes([
         require('./oauth'),
         require('../../interfaces/routes/hello'),
         require('../../interfaces/routes/private'),

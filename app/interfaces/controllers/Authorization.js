@@ -1,8 +1,7 @@
 'use strict';
 
 const Errors = require('./errors');
-const GetAccessToken = require('../../application/use_cases/GetAccessToken');
-const VerifyAccessToken = require('../../application/use_cases/VerifyAccessToken');
+const Authorization = require('../../application/use_cases/Authorization');
 
 module.exports = {
 
@@ -22,7 +21,7 @@ module.exports = {
 
     // Treatment
     try {
-      const accessToken = await GetAccessToken(email, password, serviceLocator);
+      const accessToken = await Authorization.getAccessToken(email, password, serviceLocator);
 
       // Output
       return accessToken;
@@ -45,7 +44,7 @@ module.exports = {
 
     // Treatment
     try {
-      const { uid } = VerifyAccessToken(accessToken, serviceLocator);
+      const { uid } = Authorization.verifyAccessToken(accessToken, serviceLocator);
 
       // Output
       return h.authenticated({
