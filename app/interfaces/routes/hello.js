@@ -1,6 +1,4 @@
-'use strict';
-
-const HelloController = require('../controllers/Hello');
+const HelloController = require("../controllers/Hello");
 
 module.exports = [
   {

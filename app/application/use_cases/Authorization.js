@@ -1,7 +1,10 @@
-'use strict';
-
-module.exports = {
-  async getAccessToken(email, password, { userRepository, accessTokenManager }){
+export class Authorization{
+  
+  constructor(user: User, repository) {
+    this.User = user;
+    this.Repository = repository;
+  } 
+  async getAccessToken(user: Login, MyRepository: Repository){
     const user = userRepository.getByEmail(email);
 
     if (!user || user.password !== password) {
