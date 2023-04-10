@@ -1,24 +1,20 @@
 enum UserState {
-    ACTIVE = 'A',
-    INACTIVE = 'I'
+  ACTIVE = "A",
+  INACTIVE = "I",
 }
 
 export class User {
-    userid: string;
-    personId: string;
-    state: UserState;
+  userId: string;
+  personId: string;
+  state: UserState;
 
-    constructor(id, personId, state) {
-        this.userid = id;
-        this.personId = personId;
-        this.state = state;
-    }
+  constructor(id, personId, state) {
+    this.userId = id;
+    this.personId = personId;
+    this.state = state;
+  }
 
-    static __fields__(){
-        return [
-            "username",
-            "password"
-        ]
-    }
-
-};
+  static __fields__() {
+    return ["userId", "personId", "state"];
+  }
+}

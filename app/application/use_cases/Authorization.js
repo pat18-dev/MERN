@@ -1,23 +1,20 @@
-export class Authorization{
-  
-  constructor(user: User, repository) {
-    this.User = user;
+export class Authorization {
+  constructor(repository) {
     this.Repository = repository;
-  } 
-  async getAccessToken(user: Login, MyRepository: Repository){
-    const user = userRepository.getByEmail(email);
+  }
 
+  async getAccessToken(userId, password) {
+    const user = this.Repository.getByUserId(userId);
     if (!user || user.password !== password) {
-      throw new Error('Bad credentials');
+      throw new Error("Bad credentials");
     }
+    return accessTokenManager.generate({ uid: user.userId });
+  }
 
-    return accessTokenManager.generate({ uid: user.id });
-  },
-
-  verifyAccessToken(accessToken, { accessTokenManager }){
+  verifyAccessToken(accessToken, { accessTokenManager }) {
     const decoded = accessTokenManager.decode(accessToken);
     if (!decoded) {
-      throw new Error('Invalid access token');
+      throw new Error("Invalid access token");
     }
     return { uid: decoded.uid };
   }

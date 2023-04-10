@@ -1,5 +1,5 @@
-'use strict';
+"use strict";
 
-module.exports = (name = 'world') => {
+module.exports = (name = "world") => {
   return `Hello ${name}!`;
 };

@@ -1,25 +1,24 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 
 const createServer = async (config) => {
-    const server = express();
-    server.use(express.json());
-    server.listen(config.port)
+  const server = express();
+  server.use(express.json());
+  server.listen(config.port);
 
-    // Register custom plugins
-    await server.registerRoutes([
-        require('./oauth'),
-        require('../../interfaces/routes/hello'),
-        require('../../interfaces/routes/private'),
-    ]);
+  // Register custom plugins
+  await server.registerRoutes([
+    require("./oauth"),
+    require("../../interfaces/routes/hello"),
+    require("../../interfaces/routes/private"),
+  ]);
 
-    server.app.serviceLocator = require('../../infrastructure/config/service-locator');
-    return server;
+  server.app.serviceLocator = require("../../infrastructure/config/service-locator");
+  return server;
 };
 
 module.exports = createServer;
-
 
 // const routes = [
 //     {
@@ -36,6 +35,6 @@ module.exports = createServer;
 //     },
 //     // Add more routes here
 //   ];
-  
+
 //   // Register the routes using the middleware function
 //   app.use(registerRoutes(routes));

@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const AuthorizationController = require('../../../interfaces/controllers/AuthorizationController');
+const AuthorizationController = require("../../../interfaces/controllers/AuthorizationController");
 
 module.exports = () => {
   return {
-    authenticate: AuthorizationController.verifyAccessToken
+    authenticate: AuthorizationController.verifyAccessToken,
   };
 };
