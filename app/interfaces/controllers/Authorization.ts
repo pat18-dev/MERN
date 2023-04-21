@@ -1,4 +1,4 @@
-import { Errors } from "./errors";
+import { unauthorized, badRequest } from "./errors";
 import { Authorization } from "../../application/use_cases/Authorization";
 
 export async function getAccessToken(request) {
@@ -23,7 +23,7 @@ export async function getAccessToken(request) {
     // Output
     return accessToken;
   } catch (err) {
-    return Errors.unauthorized("Bad credentials");
+    return unauthorized("Bad credentials");
   }
 }
 
@@ -34,7 +34,7 @@ export function verifyAccessToken(request, h) {
   // Input
   const authorizationHeader = request.headers.authorization;
   if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
-    throw Errors.badRequest(
+    throw badRequest(
       "Missing or wrong Authorization request header",
       "oauth"
     );
@@ -56,6 +56,6 @@ export function verifyAccessToken(request, h) {
       artifacts: { accessToken: accessToken },
     });
   } catch (err) {
-    return Errors.unauthorized("Bad credentials");
+    return unauthorized("Bad credentials");
   }
 }
