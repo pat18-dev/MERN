@@ -1,5 +1,30 @@
 {
- "compilerOptions": {
-    "noImplicitAny": false
- }   
+   "compilerOptions": {
+      "target": "es6", // specifies the ECMAScript version to compile to
+      "module": "commonjs", // specifies the module format to use
+      "outDir": "./build", // specifies the directory where compiled files will be placed
+      "strict": true, // enables strict type-checking
+      "esModuleInterop": true, // enables compatibility with CommonJS modules
+      "skipLibCheck": true, // disables type-checking of library files
+      /* Additional Checks */
+      "noUnusedLocals": true, /* Report errors on unused locals. */
+      "noUnusedParameters": true, /* Report errors on unused parameters. */
+      "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
+      "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
+      "resolveJsonModule": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "sourceMap": true,
+      "pretty": true,
+      "allowUnreachableCode": true,
+      "allowUnusedLabels": true,
+      "noImplicitAny": true,
+      "noImplicitUseStrict": false,
+   },
+   "include": [
+      "app/**/*"
+   ], // specifies the files to include in the compilation process
+   "exclude": [
+      "node_modules"
+   ] // specifies the files to exclude from the compilation process
 }

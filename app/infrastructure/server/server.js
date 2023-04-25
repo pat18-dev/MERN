@@ -1,10 +1,12 @@
 "use strict";
 
 const express = require("express");
+const cors = require("cors");
 
 const createServer = async (config) => {
   const server = express();
   server.use(express.json());
+  server.use(cors());
   server.listen(config.port);
 
   // Register custom plugins

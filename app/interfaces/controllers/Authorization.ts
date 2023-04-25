@@ -1,14 +1,16 @@
-import { unauthorized, badRequest } from "./errors";
+import { Request, Response } from "express"
+
+import { unauthorized, badRequest } from "../controllers/errors";
 import { Authorization } from "../../application/use_cases/Authorization";
 
-export async function getAccessToken(request) {
+export async function getAccessToken(request: Request) {
   // Context
   // const serviceLocator = request.server.app.serviceLocator;
   const Repository = request.server.app.serviceLocator;
 
   // Input
-  const userId = request.payload["userId"];
-  const password = request.payload["password"];
+  const userId = request.body["userId"];
+  const password = request.body["password"];
 
   //Object
   authorizationReference = new Authorization(Repository);
@@ -23,11 +25,11 @@ export async function getAccessToken(request) {
     // Output
     return accessToken;
   } catch (err) {
-    return unauthorized("Bad credentials");
+    return unauthorized();
   }
 }
 
-export function verifyAccessToken(request, h) {
+export function verifyAccessToken(request: Request, response: Response) {
   // Context
   const Repository = request.server.app.serviceLocator;
 
@@ -35,8 +37,7 @@ export function verifyAccessToken(request, h) {
   const authorizationHeader = request.headers.authorization;
   if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
     throw badRequest(
-      "Missing or wrong Authorization request header",
-      "oauth"
+      "Missing or wrong Authorization request header"
     );
   }
   const accessToken = authorizationHeader
@@ -51,11 +52,11 @@ export function verifyAccessToken(request, h) {
     const { uid } = authorizationReference.verifyAccessToken(accessToken);
 
     // Output
-    return h.authenticated({
+    return response.authenticated({
       credentials: { uid },
       artifacts: { accessToken: accessToken },
     });
   } catch (err) {
-    return unauthorized("Bad credentials");
+    return unauthorized();
   }
 }
