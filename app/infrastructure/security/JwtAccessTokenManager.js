@@ -2,11 +2,11 @@
 
 const jwt = require("jsonwebtoken");
 
-const AccessTokenManager = require("../../application/security/AccessTokenManager");
 
 const JWT_SECRET_KEY = "shhhhhh!";
 
-module.exports = class extends AccessTokenManager {
+
+module.exports = class AccessTokenManager {
   generate(payload) {
     return jwt.sign(payload, JWT_SECRET_KEY);
   }

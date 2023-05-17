@@ -3,6 +3,7 @@ import { Request, Response } from "express"
 import { unauthorized, badRequest } from "../controllers/errors";
 import { Authorization } from "../../application/use_cases/Authorization";
 
+
 export async function getAccessToken(request: Request) {
   // Context
   // const serviceLocator = request.server.app.serviceLocator;
@@ -13,7 +14,7 @@ export async function getAccessToken(request: Request) {
   const password = request.body["password"];
 
   //Object
-  authorizationReference = new Authorization(Repository);
+  const authorizationReference = new Authorization(Repository);
 
   // Treatment
   try {
@@ -45,7 +46,7 @@ export function verifyAccessToken(request: Request, response: Response) {
     .replace(/ /g, "");
 
   //Object
-  authorizationReference = new Authorization(Repository);
+  const authorizationReference = new Authorization(Repository);
 
   // Treatment
   try {
